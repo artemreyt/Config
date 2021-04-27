@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(Config LANGUAGES CXX)
 
-add_subdirectory(third_party/json)
+add_subdirectory(third_party/json EXCLUDE_FROM_ALL)
 add_subdirectory(Logger EXCLUDE_FROM_ALL)
 
 set(CONFIG_SRC src/Config.cxx)
