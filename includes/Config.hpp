@@ -23,16 +23,16 @@ private:
     mutable std::mutex _mutex;
     Logger::BaseLogger &_logger;
 
-
 public:
     explicit Config(const std::string &filename, Logger::BaseLogger &logger);
     Config(const Config &other, Logger::BaseLogger &logger);
 
     const_reference at(const key_type &key) const ;
-    reference at(const key_type &key);
-
     const_reference operator[](const key_type &key) const;
-    reference operator[](const key_type &key);
+
+    void insert_or_assign(const key_type &key, const value_type &value);
+    bool erase(const key_type& key);
+    bool contains(const key_type &key);
 
     const_iterator begin() const ;
     const_iterator end() const ;
