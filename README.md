@@ -14,6 +14,12 @@ move semanthic, raise perfomance for interthread usage and so on.
     $ make
 ```
 
+## Requirements:
+```
+cmake >= 3.10
+C++17 standard
+```
+
 
 ## Usage:
 ```C++
