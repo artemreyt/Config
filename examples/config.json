@@ -1,0 +1,8 @@
+{
+    "nested_param": {
+        "nested_param_1": "nested_param_1" 
+    },
+    "hello_message":"hello",
+    "times_to_write":5,
+    "write_hello_message":true
+}
