@@ -2,8 +2,10 @@
 #define CONFIG_HPP
 
 #include "nlohmann/json.hpp"
+#include "Logger.hpp"
 #include <mutex>
 #include <string>
+#include <iostream>
 
 namespace artemreyt {
 
@@ -18,11 +20,13 @@ public:
 
 private:
     json_map_t _json_map;
-    mutable std::mutex _mutex; // FIXME: rename
+    mutable std::mutex _mutex;
+    Logger::BaseLogger &_logger;
+
 
 public:
-    explicit Config(const std::string &filename);
-    Config(const Config &other);
+    explicit Config(const std::string &filename, Logger::BaseLogger &logger);
+    Config(const Config &other, Logger::BaseLogger &logger);
 
     const_reference at(const key_type &key) const ;
     reference at(const key_type &key);

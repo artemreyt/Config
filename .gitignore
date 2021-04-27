@@ -103,4 +103,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+.vscode
+*.log
+
 # End of https://www.toptal.com/developers/gitignore/api/c++,macos,linux,cmake

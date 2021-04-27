@@ -2,6 +2,7 @@
 #include <string>
 #include <filesystem>
 #include <iostream>
+#include "Logger.hpp"
 
 namespace fs = std::filesystem;
 const char *config_filename = "config.json";
@@ -50,7 +51,8 @@ int main(int argc, char **argv) {
     const std::string json_config_relative_path = 
             fs::path(argv[0]).parent_path().append(config_filename).string();
 
-    artemreyt::Config config(json_config_relative_path);
+    Logger::FileLogger logger("easy_example.log");
+    artemreyt::Config config(json_config_relative_path, logger);
 
     std::cout << "------- PRINT CONFIG TEST -------\n";
     print_config(config);
@@ -66,11 +68,18 @@ int main(int argc, char **argv) {
 
     std::cout << "------- WRITE `at()` TEST -------\n";
     std::cout << "switching `hello_message` to `hello from config` and `times_to_write` to 2\n";
-    artemreyt::Config copy_config(config);
-    copy_config["hello_message"] = "hello from copy config";
+
+    Logger::FileLogger copy_logger("copy_easy_example.log");
+    artemreyt::Config copy_config(config, copy_logger);
+    copy_config.at("hello_message") = "hello from copy config";
     copy_config["times_to_write"] = 2;
     test_read_at(copy_config);
     std::cout << "------- WRITE `at()` TEST -------\n";
+
+    // Access to non-exist
+    try {
+        copy_config.at("sdkdk") = 4;
+    } catch (...) {}
 
 
 
